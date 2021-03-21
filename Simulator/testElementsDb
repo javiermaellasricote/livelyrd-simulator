@@ -1,0 +1,59 @@
+simulatorDb.collectionTest.deleteMany({})
+
+simulatorDb.collectionTest.insert({
+    '_id': ObjectId("5ea7e9d6cbdf4d5f06e8e384"),
+    'name': 'Spoons',
+    'owner': 'Player1',
+    'initialQuantity': 0.0
+})
+
+simulatorDb.collectionTest.insert({
+    '_id': ObjectId("5ea7e9dacbdf4d5f06e8e385"),
+    'name': 'Forks',
+    'owner': 'Player1',
+    'initialQuantity': 100.0
+})
+
+simulatorDb.collectionTest.insert({
+    '_id': ObjectId("5ea7e9e0cbdf4d5f06e8e386"),
+    'name': 'Spoons',
+    'owner': 'Player2',
+    'initialQuantity': 100.0
+})
+
+simulatorDb.collectionTest.insert({
+    '_id': ObjectId("5ea7e9e5cbdf4d5f06e8e387"),
+    'name': 'Forks',
+    'owner': 'Player2',
+    'initialQuantity': 0.0
+})
+
+simulatorDb.collectionTest.insert({
+    'name': 'getMoreForks',
+    'calculator': {
+        'forks_new': 'forks_current + getMoreForks_thisIter',
+        'spoons_new': 'spoons_current - getMoreForks_thisIter',
+    },
+    'elementDependency': {
+        'forks': ObjectId("5ea7e9dacbdf4d5f06e8e385"),
+        'spoons': ObjectId("5ea7e9d6cbdf4d5f06e8e384")
+    }
+})
+
+simulatorDb.collectionTest.insert({
+    'name': 'Objective 1',
+    'owner': 'Player1',
+    'calculator': 'spoonsPlayer1_total * forksPlayer1_total + spoonsPlayer2_current * forksPlayer2_current',
+    'initialValue': 0.0,
+    'isToBeMaximized': true,
+    'upperBound': -5.0,
+    'lowerBound': 5.0,
+    'elementDependency': {
+        'spoonsPlayer1': ObjectId("5ea7e9d6cbdf4d5f06e8e384"),
+        'forksPlayer1': ObjectId("5ea7e9dacbdf4d5f06e8e385"),
+        'spoonsPlayer2': ObjectId("5ea7e9e0cbdf4d5f06e8e386"),
+        'forksPlayer2': ObjectId("5ea7e9e5cbdf4d5f06e8e387")
+    }
+})
+
+simulatorDb.collectionTest.find({})

@@ -1,0 +1,13 @@
+set(FIND_MODELLINGLIBRARY_PATHS
+        ../ModellingLibrary/bin)
+
+set(EIGEN_INCLUDE_DIR ${FIND_MODELLINGLIBRARY_PATHS}/third-party/eigen)
+
+find_path(MODELLINGLIBRARY_INCLUDE_DIR ModellingLibrary.h
+        PATH_SUFFIXES include
+        PATHS ${FIND_MODELLINGLIBRARY_PATHS})
+
+find_library(MODELLINGLIBRARY_LIBRARY
+        NAMES ModellingLibrary
+        PATH_SUFFIXES lib
+        PATHS ${FIND_MODELLINGLIBRARY_PATHS})
